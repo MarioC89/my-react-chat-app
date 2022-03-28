@@ -46,7 +46,7 @@ function App() {
 
 
   useEffect(() => {
-    const drone = new window.Scaledrone("i34Mw2dK1IjmKOiG", {
+    const drone = new window.Scaledrone("JGmqrCsbmbemwbQe", {
       data: user,
     });
     setDrone(drone);
@@ -104,9 +104,6 @@ function App() {
       <Message messages={messages} users={users} userNames={userNames}/>
       <Input onSendMessage={onSendMessage} />
     </div>
-
-
-    
   );
 }
 

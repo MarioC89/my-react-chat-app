@@ -103,6 +103,13 @@ function App() {
       </div>
       <Message messages={messages} users={users} userNames={userNames}/>
       <Input onSendMessage={onSendMessage} />
+
+      <div className="App-header">
+        <h1>My Chat App2</h1>
+      
+      <Message messages={messages} users={users} userNames={userNames}/>
+      <Input onSendMessage={onSendMessage} />
+      </div>
     </div>
 
 

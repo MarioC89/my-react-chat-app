@@ -14,45 +14,24 @@ function randomColor() {
   return "#" + Math.floor(Math.random() * 0xffffff).toString(16);
 }
 
-const randomNumber = () => {
-  return Math.floor(Math.random() * 100)
-};
-
 function App() {
-
   const [user, setUser] = useState({
     username: randomName(),
-    randomColor: randomColor(),
-    avatar: randomNumber()
+    randomColor: randomColor()
   });
-
   const [messages, setMessages] = useState([]);
   const [drone, setDrone] = useState();
   const [users, setUsers] = useState();
-  const [rngName, setRngName] = useState("");
-  const [userNames, setUserNames] = useState();
-  const [userState, setUserState] = useState(false);
-
-
-  useEffect(() => {
-    fetch("https://randomuser.me/api/?results=200&inc=name&noinfo")
-      .then((response) => response.json())
-      .then((data) => {
-        setUserNames(data.results);
-        setUserState(true);
-      });
-  }, []);
 
 
 
   useEffect(() => {
-    const drone = new window.Scaledrone("i34Mw2dK1IjmKOiG", {
+    const drone = new window.Scaledrone("JGmqrCsbmbemwbQe", {
       data: user,
     });
     setDrone(drone);
     // eslint-disable-next-line
   }, []);
-
   if (drone) {
     drone.on("open", (error) => {
       if (error) {
@@ -76,12 +55,11 @@ function App() {
 
         const username = chatUser.clientData.username;
         const chatUserID = chatUser.id;
-        const userColor = chatUser.clientData.randomColor;
-        const userAvatar = chatUser.clientData.avatar;
+        const userColor = chatUser.clientData.randomColor
         
         setMessages((oldArray) => [
           ...oldArray,
-          { text, username, userColor, chatUserID, user, userAvatar },
+          { text, username, userColor, chatUserID, user },
         ]);
       });
     });
@@ -101,12 +79,9 @@ function App() {
       <div className="App-header">
         <h1>My Chat App</h1>
       </div>
-      <Message messages={messages} users={users} userNames={userNames}/>
+      <Message messages={messages} users={users}/>
       <Input onSendMessage={onSendMessage} />
     </div>
-
-
-    
   );
 }
 

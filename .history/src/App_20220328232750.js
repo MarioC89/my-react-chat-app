@@ -104,9 +104,6 @@ function App() {
       <Message messages={messages} users={users} userNames={userNames}/>
       <Input onSendMessage={onSendMessage} />
     </div>
-
-
-    
   );
 }
 
