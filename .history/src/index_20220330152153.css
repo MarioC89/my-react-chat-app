@@ -84,7 +84,7 @@ input {
   padding: 5px;
   font-size: 16px;
   border-radius: 8px;
-  border: 1px solid rgb(82, 151, 16);
+  border: 1px solid orangered;
   flex-grow: 1;
 }
 
@@ -99,6 +99,6 @@ button {
 }
 
 .title {
-  background-color: rgb(82, 151, 16);
+  background-color: blueviolet;
   color: #fff;
 }

@@ -19,7 +19,7 @@ const Message = ({ messages, users }) => {
               <div className="username">{message.username}</div>
               <div className="text">
                 <div>
-                  {message.timestamp[0]}:{message.timestamp[1]}
+                  {message.timestamp}: {message.timestamp}
                 </div>
                 <div >{message.text}</div>
               </div>

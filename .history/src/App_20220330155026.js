@@ -113,7 +113,7 @@ function App() {
       <div className="App-header">
         <h1 className="title">My React Chat App</h1>
       </div>
-      <div className="main">
+      <div className="">
           <input type="text" />
           <button type="button" disable={user.username.length < 3 ? true : false}>Enter</button>
       </div>

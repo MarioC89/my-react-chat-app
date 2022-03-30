@@ -81,7 +81,7 @@ function App() {
         
         setMessages((oldArray) => [
           ...oldArray,
-          { text, username, userColor, chatUserID, user, userAvatar, timestamp },
+          { text, username, userColor, chatUserID, user, userAvatar },
         ]);
       });
     });
@@ -96,28 +96,18 @@ function App() {
     }
   };
 
-
-  const date = new Date();
-  const timestamp = [date.getHours(), date.getMinutes()];
-
- /*  const timeStamp = new Date()
-  console.log(timeStamp.getHours());
-  console.log(timeStamp.getMinutes());
-
-  const stamp = timeStamp.getHours + timeStamp.getMinutes */
-
-
+  const timeStamp = new Date
 
   return (
     <div className="App">
       <div className="App-header">
-        <h1 className="title">My React Chat App</h1>
+        <h1 className="title">My Chat App</h1>
       </div>
-      <div className="main">
+      <div>
           <input type="text" />
           <button type="button" disable={user.username.length < 3 ? true : false}>Enter</button>
       </div>
-      <div>
+      <div style={position= center}>
         <Message messages={messages} users={users} userNames={userNames}/>
         <Input onSendMessage={onSendMessage} />
       </div>

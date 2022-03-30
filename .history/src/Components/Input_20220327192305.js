@@ -20,7 +20,7 @@ const Input = ({ onSendMessage }) => {
           onChange={(e) => onChange(e)}
           value={textInputs}
           type="text"
-          placeholder="Send message..."
+          placeholder="Enter your message and press ENTER"
         />
         <button>Send</button>
       </form>
