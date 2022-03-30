@@ -118,9 +118,11 @@ function App() {
   const stamp = timeStamp.getHours + timeStamp.getMinutes */
 
   // COLOR PICKER
-
-
-  // toggle screen
+  const ColorPicker = () => {
+  const [ color, setColor ] = useState(null);
+    	console.log("colorPicker", color);
+  }
+  
  const [activeScreen, setActiveScreen] = useState(true)
   
   const toggle = () => {
@@ -152,7 +154,7 @@ function App() {
           </div>
       
           <div className="chat-name">
-            <input className="ime" value={user.username} type="text" onChange={(e) => setUser(prevValues => ({...prevValues, username: e.target.value}))}/>
+            <input value={user.username} type="text" onChange={(e) => setUser(prevValues => ({...prevValues, username: e.target.value}))}/>
           </div>
           <button onClick={() => toggle()} type="submit" >Enter</button>
         </div>)

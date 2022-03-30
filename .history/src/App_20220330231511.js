@@ -104,10 +104,10 @@ function App() {
   };
 
 
-  /* useEffect(() => {
+  useEffect(() => {
     console.log('currentTime');
     console.log(currentTime);
-  }, [currentTime]) */
+  }, [currentTime])
   
   
 
@@ -118,14 +118,17 @@ function App() {
   const stamp = timeStamp.getHours + timeStamp.getMinutes */
 
   // COLOR PICKER
-
-
-  // toggle screen
+  const ColorPicker = () => {
+  const [ color, setColor ] = useState(null);
+    	console.log("colorPicker", color);
+  }
+  
  const [activeScreen, setActiveScreen] = useState(true)
   
-  const toggle = () => {
+  const ludaFunc = () => {
     setActiveScreen(false)
-    /* console.log(setActiveScreen) */
+    console.log(setActiveScreen)
+    console.log(3445);
   }
   
 
@@ -152,9 +155,9 @@ function App() {
           </div>
       
           <div className="chat-name">
-            <input className="ime" value={user.username} type="text" onChange={(e) => setUser(prevValues => ({...prevValues, username: e.target.value}))}/>
+            <input value={user.username} type="text" onChange={(e) => setUser(prevValues => ({...prevValues, username: e.target.value}))}/>
           </div>
-          <button onClick={() => toggle()} type="submit" >Enter</button>
+          <button onClick={() => ludaFunc()} type="submit" >Enter</button>
         </div>)
 
         :
