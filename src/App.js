@@ -3,6 +3,10 @@ import Input from "./Components/Input";
 import Message from "./Components/Message";
 import nouns from "./Components/Data/nouns";
 import adjectives from "./Components/Data/adjectives";
+import avatar1 from "./Components/images/avatar-1.png"
+import avatar2 from "./Components/images/avatar-2.png"
+import avatar3 from "./Components/images/avatar-3.png"
+
 
 
 function randomName() {
@@ -23,18 +27,19 @@ function App() {
 
   const [user, setUser] = useState({
     username: randomName(),
-    randomColor: randomColor(),
+    randomColor: "",
     avatar: randomNumber()
   });
 
   const [messages, setMessages] = useState([]);
   const [drone, setDrone] = useState();
   const [users, setUsers] = useState();
-  const [rngName, setRngName] = useState("");
+  const [avatar, setAvatar] = useState();
   const [userNames, setUserNames] = useState();
   const [userState, setUserState] = useState(false);
 
-  
+
+
 
   useEffect(() => {
     fetch("https://randomuser.me/api/?results=200&inc=name&noinfo")
@@ -50,6 +55,7 @@ function App() {
   useEffect(() => {
     const drone = new window.Scaledrone("i34Mw2dK1IjmKOiG", {
       data: user,
+      avatar
     });
     setDrone(drone);
     // eslint-disable-next-line
@@ -61,7 +67,7 @@ function App() {
         console.log("Error on connecting", error);
       }
 
-     
+
 
       const chatRoom = drone.subscribe("observable-room");
 
@@ -73,16 +79,20 @@ function App() {
       });
 
       chatRoom.on("data", (text, chatUser) => {
-         setUsers(drone.clientId);
+        setUsers(drone.clientId);
 
         const time = new Date();
-        const currentTime = time.getHours() + ":" +  time.getMinutes()
-        
+        const currentTime = time.getHours() + ":" + time.getMinutes()
+
 
         const username = chatUser.clientData.username;
         const chatUserID = chatUser.id;
         const userColor = chatUser.clientData.randomColor;
         const userAvatar = chatUser.clientData.avatar;
+
+        console.log('username');
+        console.log(username);
+        
         
         setMessages((oldArray) => [
           ...oldArray,
@@ -94,11 +104,11 @@ function App() {
 
   const onSendMessage = (message) => {
     if (message) {
-      
+
       drone.publish({
         room: "observable-room",
         message,
-        
+
       });
     }
   };
@@ -108,67 +118,80 @@ function App() {
     console.log('currentTime');
     console.log(currentTime);
   }, [currentTime]) */
-  
-  
 
- /*  const timeStamp = new Date()
-  console.log(timeStamp.getHours());
-  console.log(timeStamp.getMinutes());
 
-  const stamp = timeStamp.getHours + timeStamp.getMinutes */
+
+  /*  const timeStamp = new Date()
+   console.log(timeStamp.getHours());
+   console.log(timeStamp.getMinutes());
+ 
+   const stamp = timeStamp.getHours + timeStamp.getMinutes */
 
   // COLOR PICKER
 
 
   // toggle screen
- const [activeScreen, setActiveScreen] = useState(true)
-  
+  const [activeScreen, setActiveScreen] = useState(true)
+
   const toggle = () => {
     setActiveScreen(false)
+  
     /* console.log(setActiveScreen) */
   }
+
+  console.log(user)
   
+  const setMyAvatar = (myString) => {
+    setAvatar(myString);
+  };
+  
+
 
   return (
     <div className="App">
-        <div className="App-header">
-          <h1 className="title">My React Chat App</h1>
-        </div>
-
-        {
-       activeScreen ? 
-
-        (<div className="main">
-          <h1>First type your chat name and pick
-            an avatar</h1>
-          <h3>Choose one from existing avatars</h3>
-
+      <div className="App-header">
+        <h1 className="title">My React Chat App</h1>
+      </div>
           
-          <div className="avatar-picker">
+          {
+            activeScreen ?
 
-          </div>
-          <div className="color-picker">
-            <input type="color" />
-          </div>
-      
-          <div className="chat-name">
-            <input className="ime" value={user.username} type="text" onChange={(e) => setUser(prevValues => ({...prevValues, username: e.target.value}))}/>
-          </div>
-          <button onClick={() => toggle()} type="submit" >Enter</button>
-        </div>)
+          (<div className="main">
+            <h1>First type your chat name and pick
+              an avatar</h1>
+            <h3>Choose one from existing avatars</h3>
 
-        :
 
-        (<div className="chat-window">
-          <Message messages={messages} users={users} userNames={userNames}/>
-          <Input onSendMessage={onSendMessage} />
-        </div>)
-} 
-        
+            <div className="avatar-picker">
+              <img src={avatar1} onClick={() => setMyAvatar("astronaut")} alt="" />
+              <img src={avatar2} onClick={() => setMyAvatar("astronaut")} alt="" />
+              <img src={avatar3} onClick={() => setMyAvatar("astronaut")} alt="" />
+            </div>
+
+            <div className="color-picker">
+              <input type="color" value={user.randomColor} onChange={(e) => setUser(prevValues => ({ ...prevValues, randomColor: e.target.value }))} />
+            </div>
+
+            <div className="chat-name">
+              <input className="ime" value={user.username} type="text" placeholder="Enter chat name" onChange={(e) => setUser(prevValues => ({ ...prevValues, username: e.target.value }))} />
+            </div>
+
+            <button onClick={() => toggle()} type="submit" disabled={user.username.length < 3 ? true : false}>Enter</button>
+          </div>)
+
+            :
+
+          (<div className="chat-window">
+            <Message messages={messages} users={users} userNames={userNames} />
+            <Input onSendMessage={onSendMessage} />
+          </div>)
+          }
+
+
     </div>
 
 
-    
+
   );
 }
 

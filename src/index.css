@@ -63,7 +63,7 @@
   max-width: 400px;
   margin: 0;
   border-radius: 12px;
-  background-color: cornflowerblue;
+  background-color: rgb(9, 27, 61);
   color: white;
   display: inline-block;
 }
@@ -110,4 +110,26 @@ button {
   height: 100vh;
   flex-direction: column;
 
+}
+
+button {
+  margin: 15px;
+}
+
+button:disabled {
+  opacity: 0.4;
+}
+
+.avatar-picker {
+  display: flex;
+  width: 500px;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: bisque;
+  padding: 10px;
+  margin: 10px;
+}
+
+.color-picker {
+  margin: 15px;
 }

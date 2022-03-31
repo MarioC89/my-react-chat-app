@@ -2,7 +2,8 @@ import React from "react";
 import { v4 as uuidv4 } from "uuid";
 
 const Message = ({ messages, users }) => {
-  /* console.log(messages) */
+  console.log(messages) 
+
 
 
   return (
@@ -16,7 +17,7 @@ const Message = ({ messages, users }) => {
             : "Messages-message currentMember"}>
             <span
               className="avatar"
-              style={{ backgroundColor: `${message.userColor}` }}
+              style={{ backgroundColor: `${message.user.randomColor}` }}
             />
             <div className="Message-content">
               <div className="username">{message.username}</div>
