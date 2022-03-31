@@ -38,6 +38,8 @@ function App() {
   const [userNames, setUserNames] = useState();
   const [userState, setUserState] = useState(false);
 
+  const [userSubmitted, setUserSubmitted] = useState(false)
+
 
 
 
@@ -59,7 +61,7 @@ function App() {
     });
     setDrone(drone);
     // eslint-disable-next-line
-  }, []);
+  }, [userSubmitted]);
 
   if (drone) {
     drone.on("open", (error) => {
@@ -133,12 +135,6 @@ function App() {
   // toggle screen
   const [activeScreen, setActiveScreen] = useState(true)
 
-  const toggle = () => {
-    setActiveScreen(false)
-  
-    /* console.log(setActiveScreen) */
-  }
-
   console.log(user)
   
   const setMyAvatar = (myString) => {
@@ -154,7 +150,7 @@ function App() {
       </div>
           
           {
-            activeScreen ?
+            !userSubmitted ?
 
           (<div className="main">
             <h1>First type your chat name and pick
@@ -176,15 +172,15 @@ function App() {
               <input className="ime" value={user.username} type="text" placeholder="Enter chat name" onChange={(e) => setUser(prevValues => ({ ...prevValues, username: e.target.value }))} />
             </div>
 
-            <button onClick={() => toggle()} type="submit" disabled={user.username.length < 3 ? true : false}>Enter</button>
+            <button onClick={() => setUserSubmitted(true)} type="submit" disabled={user.username.length < 3 ? true : false}>Enter</button>
           </div>)
 
             :
 
-          (<div className="chat-window">
-            <Message messages={messages} users={users} userNames={userNames} />
-            <Input onSendMessage={onSendMessage} />
-          </div>)
+            <div className="chat-window">
+              <Message messages={messages} users={users} userNames={userNames} />
+              <Input onSendMessage={onSendMessage} />
+            </div>
           }
 
 
