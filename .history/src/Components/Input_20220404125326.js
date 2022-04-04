@@ -7,13 +7,12 @@ const Input = ({ onSendMessage }) => {
   const [chosenEmoji, setChosenEmoji] = useState(null);
 
   function onChange(e) {
-    e.preventDefault();
     setTextInputs(e.target.value);
   }
 
   function onSubmit(e) {
     e.preventDefault();
-    
+    setTextInputs("");
     onSendMessage(textInputs);
   }
 
@@ -23,7 +22,17 @@ const Input = ({ onSendMessage }) => {
     setTextInputs((prevValue) => `${prevValue}${emojiObject.emoji}`)
   }
 
-
+  const EmojiData = ({ chosenEmoji }) => (
+    <div>
+      <strong>Unified:</strong> {chosenEmoji.unified}
+      <br />
+      <strong>Names:</strong> {chosenEmoji.names.join(', ')}
+      <br />
+      <strong>Symbol:</strong> {chosenEmoji.emoji}
+      <br />
+      <strong>ActiveSkinTone:</strong> {chosenEmoji.activeSkinTone}
+    </div>
+  );
 
   return (
     <div className="Input">
@@ -34,11 +43,10 @@ const Input = ({ onSendMessage }) => {
           type="text"
           placeholder="Send message..."
         />
-        <Picker onEmojiClick={onEmojiClick} />
         <div>
-            
-        </div>
-        <br />
+            <Picker onEmojiClick={onEmojiClick} />
+            {chosenEmoji && <EmojiData chosenEmoji={chosenEmoji} />}
+         </div>
         <button>Send</button>
       </form>
     </div>

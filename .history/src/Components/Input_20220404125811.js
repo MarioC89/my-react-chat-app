@@ -7,13 +7,12 @@ const Input = ({ onSendMessage }) => {
   const [chosenEmoji, setChosenEmoji] = useState(null);
 
   function onChange(e) {
-    e.preventDefault();
     setTextInputs(e.target.value);
   }
 
   function onSubmit(e) {
     e.preventDefault();
-    
+    setTextInputs("");
     onSendMessage(textInputs);
   }
 
@@ -34,11 +33,9 @@ const Input = ({ onSendMessage }) => {
           type="text"
           placeholder="Send message..."
         />
-        <Picker onEmojiClick={onEmojiClick} />
         <div>
-            
+            <Picker onEmojiClick={onEmojiClick} />
         </div>
-        <br />
         <button>Send</button>
       </form>
     </div>

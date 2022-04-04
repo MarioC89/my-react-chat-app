@@ -34,7 +34,7 @@ function App() {
   const [messages, setMessages] = useState([]);
   const [drone, setDrone] = useState();
   const [users, setUsers] = useState();
-  const [avatar, setAvatar] = useState();
+  /* const [avatar, setAvatar] = useState(); */
   const [userNames, setUserNames] = useState();
   const [userState, setUserState] = useState(false);
 
@@ -57,7 +57,6 @@ function App() {
   useEffect(() => {
     const drone = new window.Scaledrone("i34Mw2dK1IjmKOiG", {
       data: user,
-      avatar
       
     });
     setDrone(drone);
@@ -111,7 +110,6 @@ function App() {
       drone.publish({
         room: "observable-room",
         message,
-        avatar
         
 
       });
@@ -140,7 +138,7 @@ function App() {
 
   console.log(user)
   
-  const setMyAvatar = (props) => {
+  const setAvatar = (props) => {
     if (props.avatar === "avatar1") {
       return avatar1
     }
@@ -172,9 +170,9 @@ function App() {
 
 
             <div className="avatar-picker">
-              <img src={avatar1} onClick={() => setMyAvatar("avatar1")} alt="" />
-              <img src={avatar2} onClick={() => setAvatar("avatar2")} alt="" />
-              <img src={avatar3} onClick={() => setAvatar("avatar3")} alt="" />
+              <img src={avatar1} onClick={() => setAvatar("avatar1")} alt="" />
+              <img src={avatar2} onClick={() => setAvatar(avatar2)} alt="" />
+              <img src={avatar3} onClick={() => setAvatar(avatar3)} alt="" />
             </div>
 
             <div className="color-picker">

@@ -8,12 +8,13 @@ const Input = ({ onSendMessage }) => {
 
   function onChange(e) {
     e.preventDefault();
+
     setTextInputs(e.target.value);
   }
 
   function onSubmit(e) {
     e.preventDefault();
-    
+    setTextInputs("");
     onSendMessage(textInputs);
   }
 

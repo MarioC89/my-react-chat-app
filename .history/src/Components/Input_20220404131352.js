@@ -7,13 +7,12 @@ const Input = ({ onSendMessage }) => {
   const [chosenEmoji, setChosenEmoji] = useState(null);
 
   function onChange(e) {
-    e.preventDefault();
     setTextInputs(e.target.value);
   }
 
   function onSubmit(e) {
     e.preventDefault();
-    
+    setTextInputs("");
     onSendMessage(textInputs);
   }
 

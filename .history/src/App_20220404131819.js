@@ -28,7 +28,7 @@ function App() {
   const [user, setUser] = useState({
     username: randomName(),
     randomColor: "",
-    avatar: ""
+    avatar: randomNumber()
   });
 
   const [messages, setMessages] = useState([]);
@@ -58,7 +58,6 @@ function App() {
     const drone = new window.Scaledrone("i34Mw2dK1IjmKOiG", {
       data: user,
       avatar
-      
     });
     setDrone(drone);
     // eslint-disable-next-line
@@ -111,8 +110,6 @@ function App() {
       drone.publish({
         room: "observable-room",
         message,
-        avatar
-        
 
       });
     }
@@ -140,19 +137,9 @@ function App() {
 
   console.log(user)
   
-  const setMyAvatar = (props) => {
-    if (props.avatar === "avatar1") {
-      return avatar1
-    }
-
-    if (props.avatar === "avatar2") {
-      return avatar2
-    }
-
-    if (props.avatar === "avatar3") {
-      return avatar3
-    }
-  }
+  const setMyAvatar = (myString) => {
+    setAvatar(myString);
+  };
   
 
 
@@ -165,7 +152,7 @@ function App() {
           {
             !userSubmitted ?
 
-          <div className="main">
+          (<div className="main">
             <h1>First type your chat name and pick
               an avatar</h1>
             <h3>Choose one from existing avatars</h3>
@@ -173,8 +160,8 @@ function App() {
 
             <div className="avatar-picker">
               <img src={avatar1} onClick={() => setMyAvatar("avatar1")} alt="" />
-              <img src={avatar2} onClick={() => setAvatar("avatar2")} alt="" />
-              <img src={avatar3} onClick={() => setAvatar("avatar3")} alt="" />
+              <img src={avatar2} onClick={() => setMyAvatar("avatar2")} alt="" />
+              <img src={avatar3} onClick={() => setMyAvatar("avatar3")} alt="" />
             </div>
 
             <div className="color-picker">
@@ -186,7 +173,7 @@ function App() {
             </div>
 
             <button onClick={() => setUserSubmitted(true)} type="submit" disabled={user.username.length < 3 ? true : false}>Enter</button>
-          </div>
+          </div>)
 
             :
 
