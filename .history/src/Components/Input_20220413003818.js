@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Picker from 'emoji-picker-react';
-import emojiIcon from "./images/emoji.png"
+import emojiIcon from "../src/Components/images/emoji.png"
+
 
 
 const Input = ({ onSendMessage }) => {
@@ -44,9 +45,13 @@ const Input = ({ onSendMessage }) => {
           placeholder="Send message..."
         />
         {
-          emojiShown && <Picker onEmojiClick={onEmojiClick}/>
-        }
-        <img className="emoji-icon" onClick={handleEmojiIcon} src={emojiIcon} alt="" />
+                emojiShown && <Picker />
+               }
+                <img className="emoji-icon" onClick={handleEmojiIcon} src={emojiIcon} alt="" />
+        <Picker onEmojiClick={onEmojiClick} />
+        <div>
+            
+        </div>
         <br />
         <button>Send</button>
       </form>

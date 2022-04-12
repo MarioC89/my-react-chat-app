@@ -4,7 +4,7 @@ import Message from "./Components/Message";
 import avatar1 from "./Components/images/avatar-1.png"
 import avatar2 from "../src/Components/images/avatar-2.png"
 import avatar3 from "../src/Components/images/avatar-3.png"
-
+import emojiIcon from "../src/Components/images/emoji.png"
 
 
 
@@ -39,6 +39,14 @@ function App() {
   const [userState, setUserState] = useState(false);
 
   const [userSubmitted, setUserSubmitted] = useState(false);
+
+  
+  
+  
+  
+
+
+
 
 
 /*   useEffect(() => {

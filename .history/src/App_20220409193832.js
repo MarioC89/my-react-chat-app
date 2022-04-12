@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
 import Input from "./Components/Input";
 import Message from "./Components/Message";
+import nouns from "./Components/Data/nouns";
+import adjectives from "./Components/Data/adjectives";
 import avatar1 from "./Components/images/avatar-1.png"
-import avatar2 from "../src/Components/images/avatar-2.png"
-import avatar3 from "../src/Components/images/avatar-3.png"
+import avatar2 from "./Components/images/avatar-2.png"
+import avatar3 from "./Components/images/avatar-3.png"
 
 
 
-
-/* function randomName() {
+function randomName() {
   const adjective = adjectives[Math.floor(Math.random() * adjectives.length)];
   const noun = nouns[Math.floor(Math.random() * nouns.length)];
   return adjective + noun;
@@ -20,15 +21,14 @@ function randomColor() {
 
 const randomNumber = () => {
   return Math.floor(Math.random() * 100)
-}; */
+};
 
 function App() {
 
   const [user, setUser] = useState({
     username: "",
     randomColor: "",
-    avatar: "",
-    avatarID: 0
+    avatar: ""
   });
 
   const [messages, setMessages] = useState([]);
@@ -38,27 +38,30 @@ function App() {
   const [userNames, setUserNames] = useState();
   const [userState, setUserState] = useState(false);
 
-  const [userSubmitted, setUserSubmitted] = useState(false);
+  const [userSubmitted, setUserSubmitted] = useState(false)
 
 
-/*   useEffect(() => {
+
+
+  useEffect(() => {
     fetch("https://randomuser.me/api/?results=200&inc=name&noinfo")
       .then((response) => response.json())
       .then((data) => {
         setUserNames(data.results);
         setUserState(true);
       });
-  }, []); */
+  }, []);
 
 
 
   useEffect(() => {
     const drone = new window.Scaledrone("i34Mw2dK1IjmKOiG", {
       data: user,
-      avatar   
+      avatar
+      
     });
     setDrone(drone);
-    
+    // eslint-disable-next-line
   }, [userSubmitted]);
 
   if (drone) {
@@ -135,7 +138,7 @@ function App() {
   // toggle screen
   const [activeScreen, setActiveScreen] = useState(true)
 
-  /* console.log(user) */
+  console.log(user)
   
   const setMyAvatar = (props) => {
     if (props.avatar === "avatar1") {

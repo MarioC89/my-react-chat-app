@@ -44,9 +44,10 @@ const Input = ({ onSendMessage }) => {
           placeholder="Send message..."
         />
         {
-          emojiShown && <Picker onEmojiClick={onEmojiClick}/>
+          emojiShown && <Picker />
         }
         <img className="emoji-icon" onClick={handleEmojiIcon} src={emojiIcon} alt="" />
+        <Picker onEmojiClick={onEmojiClick} />
         <br />
         <button>Send</button>
       </form>
