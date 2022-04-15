@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import "./styles/main.css"
 import Input from "./Components/Input";
 import Message from "./Components/Message";
 import avatar1 from "./Components/images/avatar-1.png"
 import avatar2 from "../src/Components/images/avatar-2.png"
 import avatar3 from "../src/Components/images/avatar-3.png"
+
 
 
 function App() {
@@ -34,6 +34,7 @@ function App() {
         setUserState(true);
       });
   }, []); */
+
 
 
   useEffect(() => {
@@ -124,7 +125,7 @@ function App() {
             <h3>Choose one from existing avatars</h3>
 
             <div className="avatar-picker">
-              <img src={avatar1} onClick={() => setMyAvatar("avatar1")} alt="" />
+              <img src={avatar1} onClick={() => setAvatar("avatar1")} alt="" />
               <img src={avatar2} onClick={() => setAvatar("avatar2")} alt="" />
               <img src={avatar3} onClick={() => setAvatar("avatar3")} alt="" />
             </div>
@@ -148,12 +149,16 @@ function App() {
             </div>
           }
 
+
     </div>
+
+
 
   );
 }
 
 export default App;
+
 
 
 
