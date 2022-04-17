@@ -44,10 +44,6 @@ const Input = ({ onSendMessage }) => {
         <img className="emoji-icon" onClick={handleEmojiIcon} src={emojiIcon} alt="" />
         <br />
         <button>Send</button>
-        <button onClick={()=> {
-            onSendMessage(textInputs)
-            setTextInputs("")
-        }}>Add</button>
       </form>
     </div>
   );

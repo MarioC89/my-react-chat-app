@@ -16,7 +16,7 @@ const Input = ({ onSendMessage }) => {
 
   function onSubmit(e) {
     e.preventDefault();
-    onSendMessage(textInputs);
+    onSendMessage(setTextInputs);
   }
 
   const onEmojiClick = (event, emojiObject) => {
@@ -44,10 +44,6 @@ const Input = ({ onSendMessage }) => {
         <img className="emoji-icon" onClick={handleEmojiIcon} src={emojiIcon} alt="" />
         <br />
         <button>Send</button>
-        <button onClick={()=> {
-            onSendMessage(textInputs)
-            setTextInputs("")
-        }}>Add</button>
       </form>
     </div>
   );

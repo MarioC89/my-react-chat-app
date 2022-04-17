@@ -10,8 +10,8 @@ const Message = ({ messages, users }) => {
           /* console.log(message.currentTime); */
            return (
           <div key={messages.indexOf(message)} className={(message.chatUserID === users)
-            ? "Messages-message currentMember"
-            : "Messages-message"}>
+            ? "Messages-message"
+            : "Messages-message currentMember"}>
             <span
               className="avatar"
               style={{ backgroundColor: `${message.user.randomColor}` }}

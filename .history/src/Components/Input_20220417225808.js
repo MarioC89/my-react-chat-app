@@ -45,7 +45,6 @@ const Input = ({ onSendMessage }) => {
         <br />
         <button>Send</button>
         <button onClick={()=> {
-            onSendMessage(textInputs)
             setTextInputs("")
         }}>Add</button>
       </form>

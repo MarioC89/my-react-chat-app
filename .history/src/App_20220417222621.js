@@ -73,7 +73,8 @@ function App() {
 
           /* console.log('username');
           console.log(username); */
-                    
+          
+          
           setMessages((oldArray) => [
             ...oldArray,
             { text, username, userColor, chatUserID, user, userAvatar, currentTime },
@@ -82,6 +83,8 @@ function App() {
       });
     }
   }, [user, drone])
+
+        
 
   const onSendMessage = (message) => {
     if (message) {
@@ -107,6 +110,7 @@ function App() {
     }
   }
   
+
   return (
     <div className="App">
       <div className="App-header">
@@ -145,7 +149,9 @@ function App() {
               <Input onSendMessage={onSendMessage} />
             </div>
           }
+
     </div>
+
   );
 }
 
