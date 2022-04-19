@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./styles/main.css"
 import Input from "./Components/Input";
 import Message from "./Components/Message";
 import avatar1 from "./Components/images/avatar-1.png"
 import avatar2 from "../src/Components/images/avatar-2.png"
 import avatar3 from "../src/Components/images/avatar-3.png"
+import { Scrollbars } from 'react-custom-scrollbars-2';
 
 
 function App() {
@@ -20,19 +21,10 @@ function App() {
   const [users, setUsers] = useState();
   const [avatar, setAvatar] = useState();
   const [userNames, setUserNames] = useState();
-  const [userState, setUserState] = useState(false);
   const [userSubmitted, setUserSubmitted] = useState(false);
 
-
-/*   useEffect(() => {
-    fetch("https://randomuser.me/api/?results=200&inc=name&noinfo")
-      .then((response) => response.json())
-      .then((data) => {
-        setUserNames(data.results);
-        setUserState(true);
-      });
-  }, []); */
-
+  const [chatScroll, setChatScroll] = useState(true)
+  const scrollRef = useRef()
 
   useEffect(() => {
     if (userSubmitted) {
@@ -106,37 +98,65 @@ function App() {
       return avatar3
     }
   }
+
+  useEffect(() => {
+    if (chatScroll) {
+      scrollRef.current.scrollToBottom()
+    }
+  }, [chatScroll, messages])
+
+  const onScrollHandler = () => {
+    const acceptableScrollOffset = 20
+    const scrollHeight = scrollRef.current.getScrollHeight()
+    const scrollTop = scrollRef.current.getScrollTop()
+    const clientHeight = scrollRef.current.getClientHeight()
+
+    if (scrollHeight - scrollTop - clientHeight < acceptableScrollOffset) {
+      setChatScroll(true)
+    }
+    else {
+      setChatScroll(false)
+    }
+  }
   
   return (
     <div className="App">
       <div className="App-header">
         <h1 className="title">My React Chat App</h1>
       </div>
-          
+
+      <Scrollbars
+        style={{ width: '100%', height: '100%' }}
+        ref={scrollRef}
+        onScroll={onScrollHandler}
+        autoHide
+      > 
           {
             !userSubmitted ?
 
-          <div className="main">
-            <h1>First type your chat name and pick
-              an avatar</h1>
-            <h3>Choose one from existing avatars</h3>
+              <div className="main">
+                <h1>First type your chat name and pick
+                  an avatar</h1>
+                <h3>Choose one from existing avatars</h3>
 
-            <div className="avatar-picker">
-              <img src={avatar1} onClick={() => setMyAvatar("avatar1")} alt="" />
-              <img src={avatar2} onClick={() => setAvatar("avatar2")} alt="" />
-              <img src={avatar3} onClick={() => setAvatar("avatar3")} alt="" />
-            </div>
+                <div className="avatar-picker">
+                  <img src={avatar1} onClick={() => setMyAvatar("avatar1")} alt="" />
+                  <img src={avatar2} onClick={() => setAvatar("avatar2")} alt="" />
+                  <img src={avatar3} onClick={() => setAvatar("avatar3")} alt="" />
+                </div>
 
-            <div className="color-picker">
-              <input type="color" value={user.randomColor} onChange={(e) => setUser(prevValues => ({ ...prevValues, randomColor: e.target.value }))} />
-            </div>
+                <h3>Pick avatar background color</h3>
 
-            <div className="chat-name">
-              <input className="ime" value={user.username} type="text" placeholder="Enter chat name" onChange={(e) => setUser(prevValues => ({ ...prevValues, username: e.target.value }))} />
-            </div>
+                <div className="color-picker">
+                  <input type="color" value={user.randomColor} onChange={(e) => setUser(prevValues => ({ ...prevValues, randomColor: e.target.value }))} />
+                </div>
 
-            <button onClick={() => setUserSubmitted(true)} type="submit" disabled={user.username.length < 3 ? true : false}>Enter</button>
-          </div>
+                <div className="chat-name">
+                  <input className="ime" value={user.username} type="text" placeholder="Enter chat name" onChange={(e) => setUser(prevValues => ({ ...prevValues, username: e.target.value }))} />
+                </div>
+
+                <button onClick={() => setUserSubmitted(true)} type="submit" disabled={user.username.length < 3 ? true : false}>Enter</button>
+              </div>
 
             :
 
@@ -145,6 +165,7 @@ function App() {
               <Input onSendMessage={onSendMessage} />
             </div>
           }
+      </Scrollbars>
     </div>
   );
 }

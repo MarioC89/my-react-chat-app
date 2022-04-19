@@ -4,7 +4,7 @@ const Message = ({ messages, users }) => {
   /* console.log(messages)  */
 
   return (
-    <div>
+    <div className="msg-window">
       <ul className="Messages-list">
         {messages.map((message) => {
           /* console.log(message.currentTime); */
